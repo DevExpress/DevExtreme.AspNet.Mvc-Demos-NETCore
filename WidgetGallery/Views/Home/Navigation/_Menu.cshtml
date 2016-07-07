@@ -1,0 +1,5 @@
+﻿@(Html.DevExtreme().Menu()
+    .DataSource(d => d.WebApi().Controller("NavigationData").LoadAction("ProductsByCategories"))
+    .DisplayExpr("name")
+    .ItemsExpr("products")
+)

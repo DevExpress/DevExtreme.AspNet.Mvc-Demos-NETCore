@@ -1,0 +1,97 @@
+﻿<div class="row p-t-6">
+    <div class="col-md-12">
+        @(Html.DevExtreme().Form()
+            .ID("form")
+            .ShowValidationSummary(false)
+            .Items(items => {
+
+                items.AddSimple()
+                    .DataField("Name")
+                    .Editor(e => e.TextBox())
+                    .IsRequired(true);
+
+                items.AddSimple()
+                    .DataField("BirthDate")
+                    .Label(l => l.Text("Date of birth"))
+                    .Editor(e => e
+                        .DateBox()
+                        .Value(DateTime.Now)
+                    )
+                    .IsRequired(true)
+                    .ValidationRules(rules => rules
+                        .AddRange()
+                        .Max(DateTime.Now.AddYears(-21))
+                        .Message("You must be at least 21 years old")
+                    );
+
+                items.AddSimple()
+                    .DataField("Country")
+                    .Editor(e => e
+                        .SelectBox()
+                        .DataSource(d => d.WebApi().Controller("GeoNames").LoadAction("Countries"))
+                    )
+                    .IsRequired(true);
+
+                items.AddSimple()
+                    .DataField("City")
+                    .Editor(e => e
+                        .Autocomplete()
+                        .MinSearchLength(2)
+                        .DataSource(d => d.WebApi().Controller("GeoNames").LoadAction("Cities"))
+                    )
+                    .IsRequired(true)
+                    .ValidationRules(rules => {
+
+                        rules.AddPattern()
+                            .Pattern(@"^[a-zA-Z\s]+$")
+                            .Message("Do not use digits in the City name.");
+
+                        rules.AddPattern()
+                            .Pattern("^.{2,}$")
+                            .Message("City must have at least 2 symbols");
+
+                    });
+
+                items.AddSimple()
+                    .DataField("ZipCode")
+                    .Editor(e => e.NumberBox())
+                    .IsRequired(true)
+                    .ValidationRules(rules => rules
+                        .AddStringLength()
+                        .Min(5)
+                        .Max(10)
+                        .Message("Zip code can not be less than 5 or greater than 10 digits")
+                    );
+
+                items.AddSimple()
+                    .DataField("Address")
+                    .Editor(e => e.TextBox())
+                    .IsRequired(true);
+
+                items.AddSimple()
+                    .DataField("Phone")
+                    .HelpText("Enter the phone number in the following format +0 (000) 000-00-00")
+                    .Editor(e => e.TextBox())
+                    .ValidationRules(rules => rules
+                        .AddPattern()
+                        .Pattern(@"^\+\s*\d\s*\(\s*\d{3}\)\s*\d{3}\s*-\s*\d{2}\s*-\s*\d{2}$")
+                        .Message("The phone must have the following format: +0 (000) 000-00-00")
+                    );
+            })
+            .FormData(Model)
+
+        )
+    </div>
+    <div class="col-md-12">
+        @(Html.DevExtreme().Button()
+            .Text("Submit")
+            .OnClick("submitButton_click")
+        )
+    </div>
+</div>
+
+<script>
+    function submitButton_click(e) {
+        $("#form").dxForm("instance").validate();
+    }
+</script>

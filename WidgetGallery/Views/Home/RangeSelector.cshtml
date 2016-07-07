@@ -1,0 +1,79 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        @(Html.DevExtreme().RangeSelector()
+            .Title("Ships By Month")
+            .DataSource(d => d.WebApi()
+                .Controller("ChartsData")
+                .LoadAction("ShipsByMonth")
+                .LoadParams(new { shipper = "Federal Shipping" })
+            )
+            .Size(s => s.Height(400))
+            .Chart(c => c
+                .CommonSeriesSettings(s => s
+                    .Type(SeriesType.StepArea)
+                    .ArgumentField("month")
+                )
+                .Series(series => {
+
+                    series.Add()
+                        .ValueField("totalAmount")
+                        .Color("yellow");
+
+                    series.Add()
+                        .ValueField("amount");
+
+                })
+            )
+            .Scale(s => s
+                .ValueType(ChartDataType.DateTime)
+                .TickInterval(i => i.Months(1))
+                .MinorTickInterval(i => i.Months(1))
+            )
+            .SliderMarker(m => m.Format(Format.MonthAndYear))
+        )
+    </div>
+</div>
+<div class="row p-t-6">
+    <div class="col-md-12">
+        @(Html.DevExtreme().RangeSelector()
+            .Title("Copper Production in 2013")
+            .DataSource("~/SampleData/Copper.json")
+            .Chart(c => c
+                .CommonSeriesSettings(s => s
+                    .ArgumentField("country")
+                    .Type(SeriesType.Bar)
+                )
+                .Series(series => {
+                    series.Add()
+                        .Name("Copper")
+                        .ValueField("copper");
+                })
+
+            )
+            .Scale(s => s.UseTicksAutoArrangement(false))
+        )
+    </div>
+</div>
+<div class="row p-t-6">
+    <div class="col-md-12">
+        @(Html.DevExtreme().RangeSelector()
+            .Title("Vacation Period")
+            .Scale(s => s
+                .StartValue(new DateTime(2016, 3, 1))
+                .EndValue(new DateTime(2016, 9, 1))
+                .MinorTickInterval(VizTimeInterval.Day)
+                .TickInterval(i => i.Days(7))
+                .MinRange(VizTimeInterval.Week)
+                .MaxRange(r => r.Months(4))
+                .MinorTick(t => t.Visible(false))
+            )
+            .SliderMarker(m => m.Format(Format.MonthAndDay))
+            .SelectedRange(r => r
+                .StartValue(new DateTime(2016, 6, 30))
+                .EndValue(new DateTime(2016, 7, 14))
+            )
+            .Margin(m => m.Top(20))
+            .Size(s => s.Height(175))
+        )
+    </div>
+</div>

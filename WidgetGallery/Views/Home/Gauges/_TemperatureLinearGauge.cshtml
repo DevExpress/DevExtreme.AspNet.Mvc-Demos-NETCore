@@ -1,0 +1,29 @@
+﻿@(Html.DevExtreme().LinearGauge()
+    .Title(t => t
+        .Text("Temperature (°C)")
+        .Font(f => f.Size(16))
+    )
+    .Geometry(g => g.Orientation(Orientation.Vertical))
+    .Scale(s => s
+        .StartValue(-40)
+        .EndValue(40)
+        .TickInterval(40)
+    )
+    .RangeContainer(c => c
+        .BackgroundColor("none")
+        .Ranges(ranges => {
+
+            ranges.Add()
+                .StartValue(-40)
+                .EndValue(0)
+                .Color("#679EC5");
+
+            ranges.Add()
+                .StartValue(0)
+                .EndValue(40);
+
+        })
+    )
+    .Value(10)
+    .Size(s => s.Height(450))
+)

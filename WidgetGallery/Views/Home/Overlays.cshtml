@@ -1,0 +1,82 @@
+﻿@(Html.DevExtreme().Popup()
+    .ID("popup")
+    .Title("Orders")
+    .CloseOnOutsideClick(true)
+    .ContentTemplate(@<text>
+        @(Html.DevExtreme().DataGrid()
+            .DataSource(d => d.WebApi().Controller("GridData"))
+            .Columns(columns => {
+                columns.Add()
+                    .DataField("orderDate")
+                    .DataType(GridColumnDataType.Date);
+                columns.Add().DataField("shipName");
+                columns.Add().DataField("shipCountry");
+                columns.Add().DataField("shipCity");
+                columns.Add().DataField("shipAddress");
+            })
+            .Height("100%")
+        )
+    </text>)
+)
+
+@(Html.DevExtreme().LoadPanel()
+    .ID("loadPanel")
+    .CloseOnOutsideClick(true)
+)
+
+@(Html.DevExtreme().Toast()
+    .ID("toast")
+    .Position(p => p
+        .At(HorizontalAlignment.Center, VerticalAlignment.Top)
+        .Offset(0, 50)
+    )
+    .Message("This is a toast message")
+)
+
+@(Html.DevExtreme().Popover()
+    .ID("popover")
+    .Target("#popoverButton")
+    .Title("Details")
+    .ShowTitle(true)
+    .Width(300)
+    .ContentTemplate(@<text>Popover content.</text>)
+)
+
+@(Html.DevExtreme().Tooltip()
+    .ID("tooltip")
+    .Target("#tooltipButton")
+    .Position(Position.Top)
+    .ContentTemplate(@<text>Tooltip text.</text>)
+)
+
+<div class="row">
+    @Html.DevExtreme().Button().Text("Show Popup").OnClick("popupButton_click")
+    @Html.DevExtreme().Button().Text("Show LoadPanel").OnClick("loadPanelButton_click")
+    @Html.DevExtreme().Button().Text("Show Toast").OnClick("toastButton_click")
+    @Html.DevExtreme().Button().ID("popoverButton").Text("Show Popover").OnClick("popoverButton_click")
+    @Html.DevExtreme().Button().ID("tooltipButton").Text("Show Tooltip").OnClick("tooltipButton_click")
+</div>
+
+<script>
+
+    function popupButton_click() {
+        $("#popup").dxPopup("instance").show();
+    }
+
+    function loadPanelButton_click() {
+        $("#loadPanel").dxLoadPanel("instance").show();
+    }
+
+    function toastButton_click() {
+        $("#toast").dxToast("instance").show();
+    }
+
+    function popoverButton_click() {
+        $("#popover").dxPopover("instance").show();
+    }
+
+    function tooltipButton_click() {
+        $("#tooltip").dxTooltip("instance").show();
+    }
+
+</script>

@@ -1,0 +1,19 @@
+﻿@(Html.DevExtreme().LinearGauge()
+    .Title(t => t
+        .Text("Humidity (%)")
+        .Font(f => f.Size(16))
+    )
+    .Geometry(g => g.Orientation(Orientation.Vertical))
+    .Scale(s => s
+        .StartValue(0)
+        .EndValue(100)
+        .TickInterval(10)
+    )
+    .RangeContainer(c => c.BackgroundColor("#CACACA"))
+    .ValueIndicator(i => i
+        .Type(GaugeIndicatorType.Rhombus)
+        .Color("#A4DDED")
+    )
+    .Value(81)
+    .Size(s => s.Height(450))
+)

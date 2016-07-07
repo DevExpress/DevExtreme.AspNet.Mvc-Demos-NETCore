@@ -1,0 +1,42 @@
+﻿<div class="row">
+    <div class="col-md-6">
+       @Html.Partial("Gauges/_DeviationsBarGauge")
+    </div>
+    <div class="col-md-6">
+        @Html.Partial("Gauges/_SpeedBarGauge")
+    </div>
+</div>
+
+<div class="row p-t-6">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Partial("Gauges/_TemperatureLinearGauge")
+            </div>
+            <div class="col-md-4">
+                @Html.Partial("Gauges/_HumidityLinearGauge")
+            </div>
+            <div class="col-md-4">
+                @Html.Partial("Gauges/_PressureLinearGauge")
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("Gauges/_SubvaluesLinearGauge")
+            </div>
+            <div class="col-md-12">
+                @Html.Partial("Gauges/_RangesLinearGauge")
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.Partial("Gauges/_SubvaluesCircularGauge")
+            </div>
+            <div class="col-md-6">
+                @Html.Partial("Gauges/_RangesCircularGauge")
+            </div>
+        </div>
+    </div>
+</div>

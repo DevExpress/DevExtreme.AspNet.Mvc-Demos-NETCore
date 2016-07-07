@@ -1,0 +1,22 @@
+﻿@(Html.DevExtreme().DataGrid()
+    .DataSource(d => d.OData()
+        .Version(4)
+        .Url("http://services.odata.org/V4/Northwind/Northwind.svc/Products")
+        .JSONP(true)
+        .Key("ProductID")
+        .Expand("Category")
+    )
+    .Columns(columns => {
+        columns.Add().DataField("ProductName");
+        columns.Add().DataField("Category.CategoryName").Caption("Category");
+        columns.Add().DataField("UnitPrice").Format(f => f.Type(Format.Currency).Precision(2));
+        columns.Add().DataField("Discontinued");
+    })
+    .Paging(p => p.PageSize(10))
+    .FilterRow(f => f.Visible(true))
+    .Selection(s => s
+        .Mode(SelectionMode.Multiple)
+        .ShowCheckBoxesMode(GridSelectionShowCheckBoxesMode.Always)
+        .AllowSelectAll(false)
+    )
+)

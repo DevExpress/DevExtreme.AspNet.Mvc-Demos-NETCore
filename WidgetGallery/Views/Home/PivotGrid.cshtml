@@ -1,0 +1,33 @@
+﻿@(Html.DevExtreme().PivotGrid()
+        .Height(500)
+        .AllowExpandAll(true)
+        .AllowSorting(true)
+        .AllowSortingBySummary(true)
+        .AllowFiltering(true)
+        .DataSource(d => d
+            .Fields(fields => {
+                fields.Add().DataField("categoryName")
+                    .Area(PivotGridArea.Row)
+                    .Width(120);
+
+                fields.Add().DataField("productName")
+                    .Area(PivotGridArea.Row)
+                    .Width(150);
+
+                fields.Add().DataField("orderDate")
+                    .Area(PivotGridArea.Column)
+                    .DataType(PivotGridDataType.Date);
+
+                fields.Add().DataField("sum")
+                    .Caption("Total")
+                    .DataType(PivotGridDataType.Number)
+                    .SummaryType(SummaryType.Sum)
+                    .Format(Format.Currency)
+                    .Area(PivotGridArea.Data);
+            })
+            .Store(s => s.WebApi().Controller("PivotGridData"))
+        )
+        .FieldChooser(f => f.Layout(PivotGridFieldChooserLayout.Layout0))
+        .Scrolling(s => s.Mode(PivotGridScrollingMode.Virtual))
+        .FieldPanel(p => p.Visible(true).ShowFilterFields(false))
+)

@@ -1,0 +1,32 @@
+﻿@(Html.DevExtreme().CircularGauge()
+    .Geometry(g => g
+        .StartAngle(180)
+        .EndAngle(0)
+    )
+    .Scale(s => s
+        .StartValue(0)
+        .EndValue(100)
+        .TickInterval(10)
+    )
+    .Value(75)
+    .RangeContainer(c => c
+        .Ranges(ranges => {
+
+            ranges.Add()
+                .StartValue(0)
+                .EndValue(20)
+                .Color("#CE2029");
+
+            ranges.Add()
+                .StartValue(20)
+                .EndValue(50)
+                .Color("#FFD700");
+
+            ranges.Add()
+                .StartValue(50)
+                .EndValue(100)
+                .Color("#228B22");
+        })
+    )
+    .ValueIndicator(i => i.Type(GaugeIndicatorType.RangeBar))
+)

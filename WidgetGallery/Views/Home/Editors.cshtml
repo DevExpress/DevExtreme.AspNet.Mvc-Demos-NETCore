@@ -1,0 +1,293 @@
+﻿@model WidgetGallery.ViewModels.EditorsViewModel
+
+<form>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>TextBox</label>
+                @(Html.DevExtreme().TextBox()
+                    .MaxLength(20)
+                    .Placeholder("Max length 20")
+                    .Value(Model.Name)
+                )
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                @(Html.DevExtreme().TextBox()
+                    .Mode(TextBoxMode.Password)
+                    .Placeholder("Enter password")
+                    .Value(Model.Password)
+                )
+            </div>
+
+            <div class="form-group">
+                <label>Masked value</label>
+                @(Html.DevExtreme().TextBox()
+                    .Mode(TextBoxMode.Tel)
+                    .Placeholder("Enter phone")
+                    .Mask("+0 (000) 000-00-00")
+                    .UseMaskedValue(true)
+                    .Value(Model.Phone)
+                )
+            </div>
+
+            <div class="form-group">
+                <label>TextBox read-only</label>
+                @(Html.DevExtreme().TextBox()
+                    .Mode(TextBoxMode.Text)
+                    .ReadOnly(true)
+                    .Value(Model.Extension)
+                )
+            </div>
+
+            <div class="form-group">
+                <label>TextArea</label>
+                @(Html.DevExtreme().TextArea()
+                    .Value("Some text")
+                    .Spellcheck(true)
+                    .Value(Model.Description)
+                )
+            </div>
+
+            <div class="form-group">
+                <label>NumberBox</label>
+                <div>
+                    @(Html.DevExtreme().NumberBox()
+                        .Max(100)
+                        .Min(0)
+                        .Mode(NumberBoxMode.Number)
+                        .Placeholder("Enter a number...")
+                        .ReadOnly(false)
+                        .ShowClearButton(true)
+                        .ShowSpinButtons(true)
+                        .Step(1)
+                        .Value(Model.Age)
+                    )
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>RadioGroup</label>
+                <div class="row">
+                    <div class="col-md-4">
+                        @(Html.DevExtreme().RadioGroup()
+                            .Items(items => {
+                                items.Add().Text("Tea");
+                                items.Add().Text("Coffee");
+                                items.Add().Text("Juice");
+                            })
+                        )
+                    </div>
+                    <div class="col-md-8">
+                        @(Html.DevExtreme().RadioGroup()
+                            .Items(items => {
+                                items.Add().Text("Tea");
+                                items.Add().Text("Coffee");
+                                items.Add().Text("Juice");
+                            })
+                            .ValueExpr("text")
+                            .Value(Model.Drink)
+                            .Layout(Orientation.Horizontal)
+                        )
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Autocomplete</label>
+                <div>
+                    @(Html.DevExtreme().Autocomplete()
+                        .DisplayValue("")
+                        .MaxItemCount(6)
+                        .MinSearchLength(2)
+                        .Placeholder("Type country name")
+                        .SearchMode(DropDownSearchMode.StartsWith)
+                        .SearchTimeout(200)
+                        .ShowClearButton(true)
+                        .DataSource(d => d.WebApi().Controller("GeoNames").LoadAction("Countries"))
+                        .Value(Model.Country)
+                    )
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Lookup</label>
+                <div>
+                    @(Html.DevExtreme().Lookup()
+                        .Placeholder("Select the city")
+                        .ApplyButtonText("Select")
+                        .ApplyValueMode(EditorValueApplyMode.UseButtons)
+                        .DataSource(d => d.WebApi().Controller("GeoNames").LoadAction("Cities").Key("this"))
+                        .CloseOnOutsideClick(true)
+                        .FieldTemplate(@<text><i><%= obj %></i></text>)
+                        .PageLoadMode(ListPageLoadMode.NextButton)
+                        .SearchMode(DropDownSearchMode.StartsWith)
+                        .SearchPlaceholder("Enter the first letters")
+                        .Shading(true)
+                        .MinSearchLength(2)
+                        .ShowDataBeforeSearch(true)
+                        .ShowPopupTitle(false)
+                        .Value(Model.City)
+                    )
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>SelectBox</label>
+                <div>
+                    @(Html.DevExtreme().SelectBox()
+                        .Placeholder("Select the color")
+                        .DataSource(Model.Colors)
+                        .AcceptCustomValue(true)
+                    )
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>TagBox</label>
+                <div>
+                    @(Html.DevExtreme().TagBox()
+                        .Placeholder("Select the color")
+                        .DataSource(Model.Colors)
+                        .AcceptCustomValue(true)
+                        .Value(Model.SelectedColors)
+                    )
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    @(Html.DevExtreme().Button()
+                        .Text("Submit")
+                        .Icon("check")
+                        .Type(ButtonType.Success)
+                    )
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label>ColorBox</label>
+                @(Html.DevExtreme().ColorBox()
+                    .ApplyButtonText("Set Color")
+                    .ApplyValueMode(EditorValueApplyMode.UseButtons)
+                    .EditAlphaChannel(true)
+                    .Placeholder("Edit color")
+                    .Value(Model.Color)
+                )
+            </div>
+
+            <div class="form-group">
+                <label>DateBox date and time</label>
+                @(Html.DevExtreme().DateBox()
+                    .ApplyValueMode(EditorValueApplyMode.UseButtons)
+                    .DisplayFormat(Format.ShortDateShortTime)
+                    .Type(DateBoxFormat.Datetime)
+                    .Interval(10)
+                    .PickerType(DateBoxPickerType.Calendar)
+                    .Value(Model.Date)
+                )
+            </div>
+
+            <div class="form-group">
+                <label>DateBox date</label>
+                @(Html.DevExtreme().DateBox()
+                    .ApplyValueMode(EditorValueApplyMode.Instantly)
+                    .Type(DateBoxFormat.Date)
+                    .PickerType(DateBoxPickerType.List)
+                    .Value(Model.Date)
+                )
+            </div>
+
+            <div class="form-group">
+                <label>Calendar</label>
+                @(Html.DevExtreme().Calendar()
+                    .FirstDayOfWeek(FirstDayOfWeek.Monday)
+                    .ZoomLevel(CalendarZoomLevel.Year)
+                    .ShowTodayButton(true)
+                    .Value(Model.Date)
+                )
+            </div>
+
+            <div class="form-group">
+                <label>Slider</label>
+                @(Html.DevExtreme().Slider()
+                    .KeyStep(1)
+                    .Label(l => l
+                        .Visible(true)
+                        .Position(VerticalEdge.Bottom)
+                    )
+                    .Tooltip(t => t
+                        .ShowMode(SliderTooltipShowMode.Always)
+                        .Enabled(true)
+                    )
+                    .Value(Model.Age)
+                    .Min(0)
+                    .Max(100)
+                )
+            </div>
+
+            <div class="form-group">
+                <label>RangeSlider</label>
+                @(Html.DevExtreme().RangeSlider()
+                    .KeyStep(0.01)
+                    .Step(0.01)
+                    .Label(l => l
+                        .Visible(true)
+                        .Position(VerticalEdge.Bottom)
+                    )
+                    .Tooltip(t => t
+                        .ShowMode(SliderTooltipShowMode.OnHover)
+                        .Enabled(true)
+                    )
+                    .Start(-1.5)
+                    .End(7.5)
+                    .Visible(true)
+                    .Min(-10)
+                    .Max(10)
+                )
+            </div>
+
+            <div class="form-group">
+                <label>Switch</label>
+                <div>
+                    @(Html.DevExtreme().Switch()
+                        .Value(Model.Accepted)
+                        .OnText("I")
+                        .OffText("O")
+                    )
+
+                    @(Html.DevExtreme().Switch()
+                        .Value(!Model.Accepted)
+                    )
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>CheckBox</label>
+                <div>
+                    @(Html.DevExtreme().CheckBox()
+                        .Value(Model.Accepted)
+                        .Text("Checked")
+                    )
+
+                    @(Html.DevExtreme().CheckBox()
+                        .Value(JS.Undefined)
+                        .Text("Indeterminate")
+                    )
+
+                    @(Html.DevExtreme().CheckBox()
+                        .Value(!Model.Accepted)
+                        .Text("Unchecked")
+                    )
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</form>

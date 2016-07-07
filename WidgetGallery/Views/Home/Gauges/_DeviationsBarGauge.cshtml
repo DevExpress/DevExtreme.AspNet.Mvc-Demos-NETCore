@@ -1,0 +1,14 @@
+﻿@(Html.DevExtreme().BarGauge()
+    .Title("Deviations")
+    .StartValue(-50)
+    .EndValue(50)
+    .BaseValue(0)
+    .Values(new[] { -21.3, 14.8, -30.9, 45.2 })
+    .Label(l => l.CustomizeText("deviationsGauge_label_customizeText"))
+)
+
+<script>
+    function deviationsGauge_label_customizeText(arg) {
+        return arg.valueText + " mm";
+    }
+</script>

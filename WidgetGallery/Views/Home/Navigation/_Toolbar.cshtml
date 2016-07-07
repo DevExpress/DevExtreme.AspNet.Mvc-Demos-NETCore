@@ -1,0 +1,50 @@
+﻿@(Html.DevExtreme().Toolbar()
+
+    .Items(items => {
+
+        items.Add()
+            .Widget(w => w
+                .Button()
+                    .Type(ButtonType.Back)
+                    .Text("Go back")
+            )
+            .Location(ToolbarItemLocation.Before);
+
+        items.Add()
+            .Text("ToolBar")
+            .Location(ToolbarItemLocation.Center);
+
+        items.Add()
+            .Widget(w => w.Button().Text("Add"))
+            .Location(ToolbarItemLocation.After)
+            .LocateInMenu(ToolbarItemLocateInMenuMode.Always);
+
+        items.Add()
+            .Widget(w => w.Button().Text("Edit"))
+            .Location(ToolbarItemLocation.After)
+            .LocateInMenu(ToolbarItemLocateInMenuMode.Always);
+
+        items.Add()
+            .Widget(w => w.Button().Text("Remove"))
+            .Location(ToolbarItemLocation.After)
+            .LocateInMenu(ToolbarItemLocateInMenuMode.Always);
+
+        items.Add()
+            .Widget(w => w
+                .Button()
+                    .Type(ButtonType.Normal)
+                    .Icon("search")
+                    .Hint("Search")
+            )
+            .Location(ToolbarItemLocation.After);
+
+        items.Add()
+            .Widget(w => w
+                .Button()
+                    .Type(ButtonType.Normal)
+                    .Icon("favorites")
+                    .Hint("Favorites")
+            )
+            .Location(ToolbarItemLocation.After);
+    })
+)

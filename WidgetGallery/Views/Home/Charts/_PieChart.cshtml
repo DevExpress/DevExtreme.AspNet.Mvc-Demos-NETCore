@@ -1,0 +1,42 @@
+﻿@(Html.DevExtreme().PieChart()
+    .Title("Sales by Category")
+    .DataSource(d => d.WebApi().Controller("ChartsData").LoadAction("SalesByCategory"))
+    .Type(PieChartType.Donut)
+    .Size(s => s.Height(500))
+    .Series(series => {
+
+        series.Add()
+            .ArgumentField("category")
+            .ValueField("count")
+            .Label(l => l
+                .Visible(true)
+                .Position(PieChartLabelPosition.Inside)
+                .BackgroundColor("rgba(0, 0, 0, 0)")
+            );
+
+        series.Add()
+            .ArgumentField("category")
+            .ValueField("sales")
+            .Label(l => l
+                .Visible(true)
+                .Format(Format.Currency)
+                .Position(PieChartLabelPosition.Columns)
+                .CustomizeText("pieChart_salesSerie_label_customizeText")
+                .Connector(c => c
+                    .Visible(true)
+                    .Width(0.5)
+                )
+            );
+
+    })
+    .Legend(l => l
+        .VerticalAlignment(VerticalEdge.Bottom)
+        .HorizontalAlignment(HorizontalAlignment.Center)
+    )
+)
+
+<script>
+    function pieChart_salesSerie_label_customizeText(arg) {
+        return arg.valueText + " (" + arg.percentText + ")";
+    }
+</script>

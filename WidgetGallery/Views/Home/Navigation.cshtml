@@ -1,0 +1,27 @@
+﻿<div class="row" style="background: rgba(96,96,96,.1)">
+    <div class="col-md-12">
+        @Html.Partial("Navigation/_Menu")
+    </div>
+</div>
+
+<div class="row p-t-6">
+    <div class="col-md-3">
+        @Html.Partial("Navigation/_TreeView")
+    </div>
+    <div class="col-md-6">
+        <div class="row" style="background: rgba(96,96,96,.1); padding: 10px 0;">
+            <div class="col-md-12">
+                @Html.Partial("Navigation/_Toolbar")
+            </div>
+        </div>
+        <div class="row p-t-6">
+            <div class="col-md-12">
+                @Html.Partial("Navigation/_TabPanel")
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        @Html.Partial("Navigation/_Accordion")
+    </div>
+</div>

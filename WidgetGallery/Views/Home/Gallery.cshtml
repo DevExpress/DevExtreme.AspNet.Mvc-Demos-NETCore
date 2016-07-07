@@ -1,0 +1,31 @@
+﻿@model WidgetGallery.ViewModels.GalleryViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        @(Html.DevExtreme().Gallery()
+            .DataSource(Model.Images)
+            .Height(430)
+            .Width(800)
+            .Loop(true)
+            .SelectedIndex(2)
+            .ShowNavButtons(true)
+        )
+    </div>
+    <div class="col-md-12 p-t-6">
+        @(Html.DevExtreme().Gallery()
+            .DataSource(Model.Images)
+            .Height(120)
+            .Width(800)
+            .Loop(false)
+            .ShowIndicator(false)
+            .WrapAround(true)
+            .SelectedIndex(1)
+            .InitialItemWidth(144)
+            .ShowNavButtons(false)
+            .ItemTemplate(@<text>
+                <img src="<%= obj %>" class="img-circle" style="height: 100%; width: 100%;" />
+            </text>)
+        )
+    </div>
+
+</div>

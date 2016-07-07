@@ -1,0 +1,115 @@
+﻿@model WidgetGallery.ViewModels.FormViewModel
+
+@(Html.DevExtreme().Form()
+    .ColCount(2)
+    .FormData(Model.FormData)
+    .Items(rootItems => {
+
+        rootItems.AddGroup()
+            .Caption("General Info")
+            .Items(generalGroup => {
+                generalGroup.AddSimple()
+                    .DataField("EmployeeID")
+                    .HelpText("This field is generated automatically")
+                    .Editor(e => e
+                        .TextBox()
+                        .ReadOnly(true)
+                    );
+
+                generalGroup.AddSimple()
+                    .DataField("FirstName")
+                    .IsRequired(true)
+                    .Editor(e => e.TextBox());
+
+                generalGroup.AddSimple()
+                    .DataField("LastName")
+                    .IsRequired(true)
+                    .Editor(e => e.TextBox());
+
+                generalGroup.AddSimple()
+                    .DataField("HireDate")
+                    .Editor(e => e.DateBox());
+
+                generalGroup.AddSimple()
+                    .DataField("Title")
+                    .Editor(e => e.TextBox());
+
+                generalGroup.AddSimple()
+                    .DataField("TitleOfCourtesy")
+                    .Editor(e => e
+                        .SelectBox()
+                        .DataSource(new[] { "Mr.", "Ms.", "Mrs.", "Dr." })
+                    );
+            });
+
+        rootItems.AddGroup()
+            .Caption("Personal Info")
+            .Items(personalGroup => {
+
+                personalGroup.AddSimple()
+                    .DataField("BirthDate")
+                    .Editor(e => e.DateBox());
+
+                personalGroup.AddTabbed()
+                    .Tabs(tabs => {
+
+                        tabs.Add()
+                            .Title("Address")
+                            .Items(addressItems => {
+
+                                addressItems.AddSimple()
+                                    .Label(l => l.Location(FormLabelLocation.Left))
+                                    .DataField("Address");
+
+                                addressItems.AddSimple()
+                                    .Label(l => l.Location(FormLabelLocation.Left))
+                                    .DataField("City");
+
+                                addressItems.AddSimple()
+                                    .Label(l => l
+                                        .Text("State")
+                                        .Location(FormLabelLocation.Left)
+                                    )
+                                    .DataField("Region");
+
+                                addressItems.AddSimple()
+                                    .Label(l => l.Location(FormLabelLocation.Left))
+                                    .DataField("PostalCode");
+
+                                addressItems.AddSimple()
+                                    .Label(l => l.Location(FormLabelLocation.Left))
+                                    .DataField("Country");
+
+                            });
+
+                        tabs.Add()
+                            .Title("Phone")
+                            .Items(phoneItems => {
+
+                                phoneItems.AddSimple()
+                                    .Label(l => l.Location(FormLabelLocation.Left))
+                                    .DataField("HomePhone");
+
+                                phoneItems.AddSimple()
+                                    .Label(l => l.Location(FormLabelLocation.Left))
+                                    .DataField("Extension");
+
+                            });
+
+                        tabs.Add()
+                            .Title("Notes")
+                            .Items(notesItems => {
+
+                                notesItems.AddSimple()
+                                    .DataField("Notes")
+                                    .Editor(e => e.TextArea().Height(100));
+
+                            });
+
+                    });
+            });
+
+    })
+    .LabelLocation(FormLabelLocation.Top)
+    .MinColWidth(100)
+)

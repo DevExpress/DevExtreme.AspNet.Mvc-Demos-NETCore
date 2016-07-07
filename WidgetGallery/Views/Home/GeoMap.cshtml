@@ -1,0 +1,43 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        @(Html.DevExtreme().Map()
+            .Key(k => k.Google("AIzaSyDk2m6n8ICK7FSmTHBLlapAWF3epiDdkHE"))
+            .ID("map")
+            .Provider(GeoMapProvider.Google)
+            .Height(400)
+            .Width("100%")
+            .Zoom(14)
+            .Controls(true)
+            .Center(40.753889, -73.981389)
+            .Markers(markers => {
+                markers.Add().Coordinates(40.753889, -73.981389);
+            })
+            .Routes(routes => {
+                routes.Add().Locations(locations => {
+                    locations.Add().Coordinates(40.753889, -73.981389);
+                    locations.Add().Coordinates(40.753889, -73.95);
+                });
+            })
+        )
+    </div>
+</div>
+<div class="row p-t-6">
+    <div class="col-md-12">
+        @(Html.DevExtreme().SelectBox()
+            .Items(items => {
+                items.Add().Text("Google").Option("value", "google");
+                items.Add().Text("Bing").Option("value", "bing");
+            })
+            .ValueExpr("value")
+            .DisplayExpr("text")
+            .Value("google")
+            .OnValueChanged("selectBox_valueChanged")
+        )
+    </div>
+</div>
+
+<script>
+    function selectBox_valueChanged(e) {
+        $("#map").dxMap("instance").option("provider", e.value);
+    }
+</script>

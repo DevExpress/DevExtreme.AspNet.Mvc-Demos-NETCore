@@ -1,0 +1,37 @@
+﻿@(Html.DevExtreme().LinearGauge()
+    .Title(t => t
+        .Text("Barometric Pressure (mb)")
+        .Font(f => f.Size(16))
+    )
+    .Geometry(g => g.Orientation(Orientation.Vertical))
+    .Scale(s => s
+        .StartValue(900)
+        .EndValue(1100)
+        .CustomTicks(new double[] { 900, 1000, 1020, 1100 })
+    )
+    .RangeContainer(c => c
+        .Ranges(ranges => {
+
+            ranges.Add()
+                .StartValue(900)
+                .EndValue(1000)
+                .Color("#679EC5");
+
+            ranges.Add()
+                .StartValue(1000)
+                .EndValue(1020)
+                .Color("#A6C567");
+
+            ranges.Add()
+                .StartValue(1020)
+                .EndValue(1100)
+                .Color("#E18E92");
+        })
+    )
+    .ValueIndicator(i => i
+        .Type(GaugeIndicatorType.Circle)
+        .Color("#E3A857")
+    )
+    .Value(1002.1)
+    .Size(s => s.Height(450))
+)

@@ -1,0 +1,54 @@
+﻿@(Html.DevExtreme().VectorMap()
+    .Layers(layers => {
+
+        layers.Add()
+            .Name("map")
+            .DataSource(new JS("DevExpress.viz.map.sources.world"))
+            .Palette(VizPalette.Violet)
+            .ColorGroupingField("pop_est")
+            .ColorGroups(new double[] { 0, 10E+6, 50E+6, 100E+6, 500E+6, 2000E+6 })
+            .Label(b => b
+                .DataField("name")
+                .Enabled(true)
+            );
+
+        layers.Add()
+            .Name("markers")
+            .DataSource("~/SampleData/VectorMap.json")
+            .ElementType(VectorMapLayerElementType.Bubble)
+            .HoverEnabled(false)
+            .BorderColor("white")
+            .BorderWidth(5)
+            .SizeGroups(new double[] { 0, 8000, 10000, 50000 })
+            .DataField("value");
+
+    })
+    .Size(s => s.Height(600))
+    .Tooltip(t => t
+        .Enabled(true)
+        .CustomizeTooltip("vectorMap_tooltip_customizeTooltip")
+    )
+    .Legends(legends => {
+
+        legends.Add()
+            .Source(s => s
+                .Layer("markers")
+                .Grouping("size")
+            )
+            .MarkerShape(VectorMapMarkerShape.Circle)
+            .CustomizeText("vectorMap_markersLegend_customizeText");
+
+    })
+    .ZoomFactor(1.5)
+    .Bounds(new double[] { -180, 85, 180, -75 })
+)
+
+<script>
+    function vectorMap_tooltip_customizeTooltip(arg) {
+        return { text: arg.attribute("text") };
+    }
+
+    function vectorMap_markersLegend_customizeText(arg) {
+        return ["< 8000K", "8000K to 10000K", "> 10000K"][arg.index];
+    }
+</script>

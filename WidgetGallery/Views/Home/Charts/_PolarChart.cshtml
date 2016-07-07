@@ -1,0 +1,17 @@
+﻿@(Html.DevExtreme().PolarChart()
+    .Title("Wind Rose, Philadelphia PA")
+    .DataSource("~/SampleData/Wind.json")
+    .CommonSeriesSettings(s => s.Type(PolarChartSeriesType.Stackedbar))
+    .Legend(l => l.Visible(true))
+    .ArgumentAxis(a => a
+        .DiscreteAxisDivisionMode(DiscreteAxisDivisionMode.CrossLabels)
+        .FirstPointOnStartAngle(true)
+    )
+    .ValueAxis(a => a.ValueMarginsEnabled(false))
+    .Series(series => {
+        series.Add().ValueField("val1").Name("1.3-4 m/s");
+        series.Add().ValueField("val2").Name("4-8 m/s");
+        series.Add().ValueField("val3").Name("8-13 m/s");
+        series.Add().ValueField("val4").Name("13-19 m/s");
+    })
+)

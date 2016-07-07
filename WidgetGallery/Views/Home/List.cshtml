@@ -1,0 +1,41 @@
+﻿<div class="row">
+
+    <div class="col-md-6">
+        @(Html.DevExtreme().List()
+            .ItemTemplate(@<text>
+                <div><%= productName %></div>
+                <div><b><%= Globalize.formatCurrency(unitPrice, "USD") %></b></div>
+            </text>)
+            .DataSource(d => d.WebApi().Controller("ListData"))
+            .DataSourceOptions(d => d
+                .PageSize(1)
+                .Sort("productName")
+                .Group("category.categoryName")
+                .Filter("[ 'unitPrice', '>', '15' ]")
+            )
+            .Grouped(true)
+            .CollapsibleGroups(true)
+            .ItemDeleteMode(ListItemDeleteMode.SlideItem)
+            .SelectionMode(ListSelectionMode.Multiple)
+            .ShowSelectionControls(true)
+            .PageLoadMode(ListPageLoadMode.ScrollBottom)
+            .Height(600)
+        )
+    </div>
+    <div class="col-md-6">
+        @(Html.DevExtreme().List()
+            .ItemTemplate(@<text>
+                <div><%= productName %></div>
+            </text>)
+            .DataSource(d => d.WebApi().Controller("ListData"))
+            .DataSourceOptions(d => d
+                .PageSize(20)
+                .Sort("productName")
+            )
+            .AllowItemReordering(true)
+            .PullRefreshEnabled(true)
+            .PageLoadMode(ListPageLoadMode.ScrollBottom)
+            .Height(600)
+        )
+    </div>
+</div>

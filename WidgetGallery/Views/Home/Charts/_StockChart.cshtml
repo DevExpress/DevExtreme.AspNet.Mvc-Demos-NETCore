@@ -1,0 +1,65 @@
+﻿@(Html.DevExtreme().Chart()
+    .Title("Stock Price")
+    .DataSource("~/SampleData/Stock.json")
+    .Panes(panes => {
+        panes.Add().Name("stock");
+        panes.Add().Name("chart");
+    })
+    .Palette(VizPalette.Pastel)
+    .ValueAxis(axisList => {
+        axisList.Add()
+            .TickInterval(1)
+            .Title("USD")
+            .Label(l => l
+                .Format(f => f.Type(Format.Currency).Precision(1))
+            );
+    })
+    .ArgumentAxis(a => a
+        .ArgumentType(ChartDataType.DateTime)
+        .Label(l => l.Format(Format.ShortDate))
+    )
+    .Tooltip(t => t
+        .Enabled(true)
+        .CustomizeTooltip("stockChart_tooltip_customizeTooltip")
+    )
+    .Series(series => {
+
+        series.Add()
+            .Name("Dell")
+            .OpenValueField("o")
+            .CloseValueField("c")
+            .HighValueField("h")
+            .LowValueField("l")
+            .Reduction(r => r.Color("red"))
+            .Pane("stock")
+            .Type(SeriesType.Candlestick);
+
+        series.Add()
+            .Name("Dell High")
+            .ValueField("h")
+            .ArgumentField("date")
+            .Pane("chart")
+            .Point(p => p.Visible(false))
+            .Type(SeriesType.Line);
+
+        series.Add()
+            .Name("Dell Low")
+            .ValueField("l")
+            .ArgumentField("date")
+            .Pane("chart")
+            .Point(p => p.Visible(false))
+            .Type(SeriesType.Line);
+    })
+)
+
+<script>
+    function stockChart_tooltip_customizeTooltip(arg) {
+        if(arg.seriesName === 'Dell') {
+            var lines = [
+                'Open: ' + arg.openValue,
+                'Close: ' + arg.closeValue
+            ];
+            return { text: lines.join("<br>") };
+        }
+    }
+</script>

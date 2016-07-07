@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevExtreme ASP.NET MVC Wrappers</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/devextreme/css/dx.common.css" rel="stylesheet" />
+    <link href="~/lib/devextreme/css/dx.light.css" rel="stylesheet" />
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script src="~/lib/cldrjs/dist/cldr.js"></script>
+    <script src="~/lib/cldrjs/dist/cldr/event.js"></script>
+    <script src="~/lib/cldrjs/dist/cldr/supplemental.js"></script>
+    <script src="~/lib/cldrjs/dist/cldr/unresolved.js"></script>
+
+    <script src="~/lib/globalize/dist/globalize.js"></script>
+    <script src="~/lib/globalize/dist/globalize/number.js"></script>
+    <script src="~/lib/globalize/dist/globalize/currency.js"></script>
+    <script src="~/lib/globalize/dist/globalize/date.js"></script>
+
+    <script src="~/lib/underscore/underscore.js"></script>
+
+    <script src="~/lib/devextreme/js/dx.all.js"></script>
+    <script src="~/lib/devextreme/js/vectormap-data/world.js"></script>
+    <script src="~/lib/devextreme-aspnet-data/js/dx.aspnet.data.js"></script>
+    <script src="~/dx.aspnet.mvc.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 page-header">
+                <h1>DevExtreme ASP.NET MVC Wrappers</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.Partial("_LayoutNavigation")
+            </div>
+            <div class="col-md-10">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

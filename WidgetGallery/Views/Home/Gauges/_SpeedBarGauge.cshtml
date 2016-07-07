@@ -1,0 +1,17 @@
+﻿@(Html.DevExtreme().BarGauge()
+    .Title("Average Speed by Racer")
+    .StartValue(0)
+    .EndValue(200)
+    .Values(new[] { 121.4, 135.4, 115.9, 141.1, 127.5 })
+    .Tooltip(t => t
+        .CustomizeTooltip("speedGauge_tooltip_customizeTooltip")
+        .Enabled(true)
+    )
+    .Label(l => l.Visible(false))
+)
+
+<script>
+    function speedGauge_tooltip_customizeTooltip(arg) {
+        return { text: 'Racer ' + (arg.index + 1) + ' - ' + arg.valueText + ' km/h' };
+    }
+</script>

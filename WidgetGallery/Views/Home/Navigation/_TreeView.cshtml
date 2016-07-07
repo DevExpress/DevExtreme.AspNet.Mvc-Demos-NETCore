@@ -1,0 +1,7 @@
+﻿@(Html.DevExtreme().TreeView()
+    .DataSource(d => d.WebApi().Controller("NavigationData").LoadAction("TreeViewData"))
+    .VirtualModeEnabled(true)
+    .RootValue("")
+    .DataStructure(TreeViewDataStructure.Plain)
+    .Height(500)
+)

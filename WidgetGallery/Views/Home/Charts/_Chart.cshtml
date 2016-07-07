@@ -1,0 +1,24 @@
+﻿@(Html.DevExtreme().Chart()
+    .Title("Sales By Category/Year")
+    .DataSource(d => d.WebApi().Controller("ChartsData").LoadAction("SalesByCategoryYear"))
+    .CommonSeriesSettings(s => s
+        .ArgumentField("category")
+        .ValueField("sales")
+        .Type(SeriesType.Bar)
+    )
+    .SeriesTemplate(t => t.NameField("year"))
+    .Legend(l => l
+        .VerticalAlignment(VerticalEdge.Bottom)
+        .HorizontalAlignment(HorizontalAlignment.Center)
+    )
+    .ValueAxis(axisList =>
+        axisList.Add().Label(l => l.Format(Format.Currency))
+    )
+    .Size(s => s.Height(500))
+    .ZoomingMode(ChartManipulationMode.All)
+    .Tooltip(t => t
+        .Enabled(true)
+        .Format(Format.Currency)
+        .Font(f => f.Size(16))
+    )
+)

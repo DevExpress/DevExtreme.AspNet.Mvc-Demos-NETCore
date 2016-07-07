@@ -1,0 +1,30 @@
+﻿@(Html.DevExtreme().Accordion()
+    .Items(items => {
+
+        items.Add()
+            .Title("Beverages")
+            .Option("id", 1);
+
+        items.Add()
+            .Title("Condiments")
+            .Option("id", 2);
+
+        items.Add()
+            .Title("Confections")
+            .Option("id", 3);
+
+        items.Add()
+            .Title("Dairy Products")
+            .Option("id", 4);
+
+    })
+    .ItemTemplate(@<text>
+        @(Html.DevExtreme().List()
+            .DataSource(d => d.WebApi()
+                .Controller("NavigationData")
+                .LoadAction("ProductsByCategory")
+                .LoadParams(new { Id = new JS("id") }))
+            .ItemTemplate("<%= name %>")
+        )
+    </text>)
+)

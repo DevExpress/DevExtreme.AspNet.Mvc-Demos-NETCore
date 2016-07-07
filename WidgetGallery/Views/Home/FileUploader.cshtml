@@ -1,0 +1,13 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        @(Html.DevExtreme().FileUploader()
+            .SelectButtonText("Add images")
+            .LabelText("Drop images here")
+            .Name("myFile")
+            .UploadMode(FileUploadMode.UseButtons)
+            .Accept("image/*")
+            .UploadUrl(Url.Action("Upload", "FileUploader"))
+            .Multiple(true)
+        )
+    </div>
+</div>

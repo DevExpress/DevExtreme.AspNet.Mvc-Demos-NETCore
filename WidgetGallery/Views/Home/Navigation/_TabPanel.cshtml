@@ -1,0 +1,36 @@
+﻿@(Html.DevExtreme().TabPanel()
+    .Items(items => {
+
+        items.Add()
+            .Title("Beverages")
+            .Icon("coffee")
+            .Option("id", 1);
+
+        items.Add()
+            .Title("Condiments")
+            .Icon("box")
+            .Badge("12")
+            .Option("id", 2);
+
+        items.Add()
+            .Title("Confections")
+            .Icon("gift")
+            .Option("id", 3);
+
+        items.Add()
+            .Title("Dairy Products")
+            .Icon("food")
+            .Option("id", 4);
+
+    })
+    .ItemTemplate(@<text>
+       @(Html.DevExtreme().List()
+            .DataSource(d => d.WebApi()
+                .Controller("NavigationData")
+                .LoadAction("ProductsByCategory")
+                .LoadParams(new { Id = new JS("id") }))
+            .ItemTemplate("<%= name %>")
+       )
+    </text>)
+    .ShowNavButtons(true)
+)

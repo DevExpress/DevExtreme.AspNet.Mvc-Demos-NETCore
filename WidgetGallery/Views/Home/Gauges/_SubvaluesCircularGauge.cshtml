@@ -1,0 +1,17 @@
+﻿@(Html.DevExtreme().CircularGauge()
+    .Geometry(g => g
+        .StartAngle(180)
+        .EndAngle(0)
+    )
+    .Scale(s => s
+        .StartValue(0)
+        .EndValue(10)
+        .TickInterval(1)
+    )
+    .Value(5)
+    .Subvalues(new double[] { 2, 8 })
+    .SubvalueIndicator(i => i
+        .Type(GaugeIndicatorType.TriangleNeedle)
+        .Color("#779ECB")
+    )
+)

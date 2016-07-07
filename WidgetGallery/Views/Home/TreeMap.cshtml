@@ -1,0 +1,13 @@
+﻿@(Html.DevExtreme().TreeMap()
+    .Title("The Most Populated Cities by Continents")
+    .DataSource("~/SampleData/TreeMap.json")
+    .Colorizer(c => c
+        .Type(TreeMapColorizerType.Gradient)
+        .Palette(VizPalette.Violet)
+    )
+    .Size(s => s.Height(600))
+    .Tooltip(t => t
+        .Enabled(true)
+        .Format(Format.Thousands)
+    )
+)

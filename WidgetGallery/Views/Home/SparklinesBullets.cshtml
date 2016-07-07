@@ -1,0 +1,52 @@
+﻿@(Html.DevExtreme().DataGrid()
+    .DataSource(d => d.WebApi().Controller("GridSparklineData"))
+    .Columns(columns => {
+
+        columns.Add()
+            .DataField("companyName");
+
+        columns.Add()
+            .Caption("Sales")
+            .AllowGrouping(false)
+            .AllowSorting(false)
+            .CellTemplate(@<text>
+
+                @(Html.DevExtreme().Sparkline()
+                    .ArgumentField("month")
+                    .ValueField("sum")
+                    .Type(SparklineType.StepArea)
+                    .ShowMinMax(true)
+                    .ShowFirstLast(true)
+                    .Tooltip(t => t.ZIndex(2))
+                    .DataSource(d => d.WebApi()
+                        .Controller("GridSparklineData")
+                        .LoadAction("Sparkline")
+                        .LoadParams(new { customerID = new JS("data.customerID") })
+                    )
+                )
+
+            </text>);
+
+        columns.Add()
+            .DataField("sumOfSales")
+            .AllowGrouping(false)
+            .SortIndex(0)
+            .SortOrder(SortOrder.Desc)
+            .CellTemplate(@<text>
+
+                @(Html.DevExtreme().Bullet()
+                    .ShowZeroLevel(true)
+                    .ShowTarget(true)
+                    .Value(new JS("value"))
+                    .StartScaleValue(0)
+                    .EndScaleValue(50000)
+                    .Tooltip(t => t
+                        .Enabled(false)
+                    )
+                )
+
+            </text>);
+    })
+    .Height(500)
+    .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+)
