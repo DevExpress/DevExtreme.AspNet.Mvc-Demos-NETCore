@@ -37,9 +37,17 @@ namespace WidgetGallery {
 
         static void ConfigureNorthwindContext(IServiceProvider serviceProvider, DbContextOptionsBuilder options) {
             var hosting = serviceProvider.GetRequiredService<IHostingEnvironment>();
+
+#if DB_LOCALDB
             var dbPath = Path.Combine(hosting.ContentRootPath, "Northwind.mdf");
             var connectionString = $@"Data Source=(localdb)\devextreme; AttachDbFileName={dbPath}; Integrated Security=True; MultipleActiveResultSets=True; App=EntityFramework";
             options.UseSqlServer(connectionString);
+#endif
+
+#if DB_SQLITE
+            var dbPath = Path.Combine(hosting.ContentRootPath, "Northwind.sqlite");
+            options.UseSqlite("Data Source=" + dbPath);
+#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
