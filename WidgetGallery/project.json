@@ -27,6 +27,7 @@
         },
         "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
         "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.0.0",
+        "Microsoft.EntityFrameworkCore.Sqlite": "1.0.0",
         "DevExtreme.AspNet.Mvc": "16.1.4-*"
     },
 
@@ -45,7 +46,11 @@
     "buildOptions": {
         "emitEntryPoint": true,
         "preserveCompilationContext": true,
-        "compile": {
+        "define": [
+            "DB_SQLITE",
+            //"DB_LOCALDB"
+        ],
+        "compile": {            
             "exclude": [ "wwwroot" ]
         }
     },
@@ -66,10 +71,11 @@
     },
 
     "scripts": {
-        "postcompile": [
-            "cmd /c sqllocaldb create devextreme || exit 0",
-            "cmd /c sqllocaldb start devextreme || exit 0"
-        ]
+        // Uncomment for LocalDB
+        //"postcompile": [
+        //    "cmd /c sqllocaldb create devextreme || exit 0",
+        //    "cmd /c sqllocaldb start devextreme || exit 0"
+        //]
     }
 
 }
