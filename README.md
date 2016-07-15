@@ -5,10 +5,10 @@ This repository contains an ASP.NET Core 1.0 Visual Studio project demonstrating
 ## Run in Docker
 
 1. [Get Docker](https://docs.docker.com/engine/installation/)
-2. `docker run -ti -p 5555:5555 devexpress/devextreme-aspnet-mvc-demos-netcore`
+2. `docker run --rm -ti -p 5555:5555 devexpress/devextreme-aspnet-mvc-demos-netcore`
 3. Navigate to http://localhost:5555 or http://docker:5555
 
-## Requirements
+## Requirements for Running Locally
 
 * Visual Studio 2015 Update 3
 * .NET Core SDK
