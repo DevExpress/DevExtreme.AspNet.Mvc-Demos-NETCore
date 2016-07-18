@@ -5,4 +5,3 @@ WidgetGallery/wwwroot/lib
 *.suo
 *.user
 project.lock.json
-launchSettings.json
