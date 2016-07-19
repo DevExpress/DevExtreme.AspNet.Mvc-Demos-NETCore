@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WidgetGallery.Models.Northwind;
 
 namespace WidgetGallery.Controllers {
@@ -19,17 +20,20 @@ namespace WidgetGallery.Controllers {
 
         [HttpGet]
         public object Get(DataSourceLoadOptions loadOptions) {
-            var customers = from c in _nwind.Customers
-                            select new {
-                                c.CustomerID,
-                                c.CompanyName,
-                                SumOfSales = (decimal?)(from d in _nwind.Order_Details
-                                                        where d.Order.CustomerID == c.CustomerID
-                                                        where d.Order.OrderDate.Value.Year == YEAR
-                                                        select d.Quantity * d.UnitPrice).Sum()
-                            };
+            var customers = _nwind.Customers.ToArray();
+            var orderDetails = _nwind.Order_Details.Include(d => d.Order).ToArray();
 
-            return DataSourceLoader.Load(customers, loadOptions);
+            var query = from c in customers
+                        select new {
+                            c.CustomerID,
+                            c.CompanyName,
+                            SumOfSales = (decimal?)(from d in orderDetails
+                                                    where d.Order.CustomerID == c.CustomerID
+                                                    where d.Order.OrderDate.Value.Year == YEAR
+                                                    select d.Quantity * d.UnitPrice).Sum()
+                        };
+
+            return DataSourceLoader.Load(query, loadOptions);
         }
 
         [HttpGet]
