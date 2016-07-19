@@ -47,7 +47,7 @@
         "emitEntryPoint": true,
         "preserveCompilationContext": true,
         "define": [
-            "DB_SQLITE",
+            "DB_SQLITE"
             //"DB_LOCALDB"
         ],
         "compile": {            
