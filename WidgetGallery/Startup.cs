@@ -31,8 +31,15 @@ namespace WidgetGallery {
 
             services
                .AddLogging()
-               .AddEntityFrameworkSqlServer()
                .AddDbContext<NorthwindContext>(ConfigureNorthwindContext);
+
+#if DB_LOCALDB
+            services.AddEntityFrameworkSqlServer();
+#endif
+
+#if DB_SQLITE
+            services.AddEntityFrameworkSqlite();
+#endif
         }
 
         static void ConfigureNorthwindContext(IServiceProvider serviceProvider, DbContextOptionsBuilder options) {
