@@ -28,7 +28,7 @@
         "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
         "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.0.0",
         "Microsoft.EntityFrameworkCore.Sqlite": "1.0.0",
-        "DevExtreme.AspNet.Mvc": "16.1.4-*"
+        "DevExtreme.AspNet.Mvc": "16.1.5-*"
     },
 
     "tools": {
