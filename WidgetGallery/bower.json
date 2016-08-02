@@ -6,7 +6,7 @@
         "jquery-validation": "1.14.0",
         "jquery-validation-unobtrusive": "3.2.6",
         "underscore": "1.8.3",
-        "devextreme": "16.1.4",
+        "devextreme": "16.1.5",
         "devextreme-aspnet-data": "1.0.0"
     }
 }
