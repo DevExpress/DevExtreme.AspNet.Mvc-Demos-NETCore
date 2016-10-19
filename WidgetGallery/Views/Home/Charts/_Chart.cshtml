@@ -2,11 +2,11 @@
     .Title("Sales By Category/Year")
     .DataSource(d => d.WebApi().Controller("ChartsData").LoadAction("SalesByCategoryYear"))
     .CommonSeriesSettings(s => s
-        .ArgumentField("category")
-        .ValueField("sales")
+        .ArgumentField("Category")
+        .ValueField("Sales")
         .Type(SeriesType.Bar)
     )
-    .SeriesTemplate(t => t.NameField("year"))
+    .SeriesTemplate(t => t.NameField("Year"))
     .Legend(l => l
         .VerticalAlignment(VerticalEdge.Bottom)
         .HorizontalAlignment(HorizontalAlignment.Center)

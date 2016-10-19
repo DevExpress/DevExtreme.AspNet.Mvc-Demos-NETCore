@@ -1,9 +1,9 @@
 ﻿@(Html.DevExtreme().TreeView()
     .DataSource(d => d.WebApi().Controller("SiteNavigationData"))
     .ItemTemplate(@<text>
-        <a href="<%= url %>"><%= obj.caption %></a>
+        <a href="<%= Url %>"><%= obj.Caption %></a>
     </text>)
-    .ExpandedExpr("expanded")
-    .ItemsExpr("children")
+    .ExpandedExpr("Expanded")
+    .ItemsExpr("Children")
     .FocusStateEnabled(false)
 )

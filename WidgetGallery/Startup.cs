@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using WidgetGallery.Models.Northwind;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using Newtonsoft.Json.Serialization;
 
 namespace WidgetGallery {
     public class Startup {
@@ -27,7 +28,9 @@ namespace WidgetGallery {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             // Add framework services.
-            services.AddMvc();
+            services
+                .AddMvc()
+                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
             services
                .AddLogging()

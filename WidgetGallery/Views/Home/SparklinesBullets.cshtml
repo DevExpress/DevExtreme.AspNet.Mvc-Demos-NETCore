@@ -3,7 +3,7 @@
     .Columns(columns => {
 
         columns.Add()
-            .DataField("companyName");
+            .DataField("CompanyName");
 
         columns.Add()
             .Caption("Sales")
@@ -12,8 +12,8 @@
             .CellTemplate(@<text>
 
                 @(Html.DevExtreme().Sparkline()
-                    .ArgumentField("month")
-                    .ValueField("sum")
+                    .ArgumentField("Month")
+                    .ValueField("Sum")
                     .Type(SparklineType.StepArea)
                     .ShowMinMax(true)
                     .ShowFirstLast(true)
@@ -21,14 +21,14 @@
                     .DataSource(d => d.WebApi()
                         .Controller("GridSparklineData")
                         .LoadAction("Sparkline")
-                        .LoadParams(new { customerID = new JS("data.customerID") })
+                        .LoadParams(new { customerID = new JS("data.CustomerID") })
                     )
                 )
 
             </text>);
 
         columns.Add()
-            .DataField("sumOfSales")
+            .DataField("SumOfSales")
             .AllowGrouping(false)
             .SortIndex(0)
             .SortOrder(SortOrder.Desc)

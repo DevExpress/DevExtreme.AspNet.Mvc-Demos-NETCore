@@ -7,12 +7,12 @@
             .DataSource(d => d.WebApi().Controller("GridData"))
             .Columns(columns => {
                 columns.Add()
-                    .DataField("orderDate")
+                    .DataField("OrderDate")
                     .DataType(GridColumnDataType.Date);
-                columns.Add().DataField("shipName");
-                columns.Add().DataField("shipCountry");
-                columns.Add().DataField("shipCity");
-                columns.Add().DataField("shipAddress");
+                columns.Add().DataField("ShipName");
+                columns.Add().DataField("ShipCountry");
+                columns.Add().DataField("ShipCity");
+                columns.Add().DataField("ShipAddress");
             })
             .Height("100%")
         )
