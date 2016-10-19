@@ -6,8 +6,8 @@
     .Series(series => {
 
         series.Add()
-            .ArgumentField("category")
-            .ValueField("count")
+            .ArgumentField("Category")
+            .ValueField("Count")
             .Label(l => l
                 .Visible(true)
                 .Position(PieChartLabelPosition.Inside)
@@ -15,8 +15,8 @@
             );
 
         series.Add()
-            .ArgumentField("category")
-            .ValueField("sales")
+            .ArgumentField("Category")
+            .ValueField("Sales")
             .Label(l => l
                 .Visible(true)
                 .Format(Format.Currency)

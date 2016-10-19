@@ -1,39 +1,39 @@
 ﻿@(Html.DevExtreme().DataGrid()
     .Columns(columns => {
         columns.Add()
-            .DataField("customerID")
+            .DataField("CustomerID")
             .Caption("Сustomer")
             .Lookup(lookup => lookup
-                .DataSource(d => d.WebApi().Controller("GridData").LoadAction("CustomersLookup").Key("value"))
-                .ValueExpr("value")
-                .DisplayExpr("text")
+                .DataSource(d => d.WebApi().Controller("GridData").LoadAction("CustomersLookup").Key("Value"))
+                .ValueExpr("Value")
+                .DisplayExpr("Text")
             );
 
         columns.Add()
-            .DataField("orderDate")
+            .DataField("OrderDate")
             .DataType(GridColumnDataType.Date);
 
         columns.Add()
-            .DataField("freight")
+            .DataField("Freight")
             .HeaderFilter(f => f.GroupInterval(100));
 
         columns.Add()
-            .DataField("shipCountry");
+            .DataField("ShipCountry");
 
         columns.Add()
-            .DataField("shipRegion");
+            .DataField("ShipRegion");
 
         columns.Add()
-            .DataField("shipVia")
+            .DataField("ShipVia")
             .Caption("Shipping Company")
             .Lookup(lookup => lookup
-                .DataSource(d => d.WebApi().Controller("GridData").LoadAction("ShippersLookup").Key("value"))
-                .ValueExpr("value")
-                .DisplayExpr("text")
+                .DataSource(d => d.WebApi().Controller("GridData").LoadAction("ShippersLookup").Key("Value"))
+                .ValueExpr("Value")
+                .DisplayExpr("Text")
             );
 
     })
-    .DataSource(d => d.WebApi().Controller("GridData").Key("orderID"))
+    .DataSource(d => d.WebApi().Controller("GridData").Key("OrderID"))
     .FilterRow(f => f.Visible(true))
     .HeaderFilter(f => f.Visible(true))
     .GroupPanel(p => p.Visible(true))
@@ -48,7 +48,7 @@
                 .DataSource(d => d.WebApi()
                     .Controller("GridData")
                     .LoadAction("OrderDetails")
-                    .LoadParams(new { orderID = new JS("data.orderID") })
+                    .LoadParams(new { orderID = new JS("data.OrderID") })
                 )
             )
 
@@ -59,10 +59,10 @@
     .Grouping(g => g.AutoExpandAll(false))
     .Summary(s => s
         .TotalItems(totalItems => {
-            totalItems.Add().Column("freight").SummaryType(SummaryType.Sum);
+            totalItems.Add().Column("Freight").SummaryType(SummaryType.Sum);
         })
         .GroupItems(groupItems => {
-            groupItems.Add().Column("freight").SummaryType(SummaryType.Sum);
+            groupItems.Add().Column("Freight").SummaryType(SummaryType.Sum);
             groupItems.Add().SummaryType(SummaryType.Count);
         })
     )

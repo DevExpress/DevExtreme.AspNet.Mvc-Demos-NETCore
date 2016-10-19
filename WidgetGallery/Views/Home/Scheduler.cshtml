@@ -2,16 +2,16 @@
         .DataSource(d => d.WebApi()
             .Controller("SchedulerData")
             .LoadAction("Appointments")
-            .Key("orderID")
+            .Key("OrderID")
         )
-        .StartDateExpr("orderDate")
-        .EndDateExpr("shippedDate")
-        .TextExpr("customerName")
+        .StartDateExpr("OrderDate")
+        .EndDateExpr("ShippedDate")
+        .TextExpr("CustomerName")
         .RemoteFiltering(true)
-        .Groups(new [] { "shipVia" })
+        .Groups(new [] { "ShipVia" })
         .Resources(res => {
             res.Add()
-                .FieldExpr("shipVia")
+                .FieldExpr("ShipVia")
                 .Label("Shipper")
                 .AllowMultiple(false)
                 .DataSource(x => x.WebApi()
@@ -36,9 +36,9 @@
     function scheduler_appointmentFormCreated(e) {
         var form = e.form;
 
-        form.itemOption("customerName", { label: { text: "Customer" }, editorOptions: { readOnly: true } });
-        form.itemOption("orderDate", { label: { text: "Order Date" } });
-        form.itemOption("shippedDate", { label: { text: "Shipped Date" } });
+        form.itemOption("CustomerName", { label: { text: "Customer" }, editorOptions: { readOnly: true } });
+        form.itemOption("OrderDate", { label: { text: "Order Date" } });
+        form.itemOption("ShippedDate", { label: { text: "Shipped Date" } });
 
         form.itemOption("allDay", { visible: false });
         form.itemOption("description", { visible: false });

@@ -11,16 +11,16 @@
             .Chart(c => c
                 .CommonSeriesSettings(s => s
                     .Type(SeriesType.StepArea)
-                    .ArgumentField("month")
+                    .ArgumentField("Month")
                 )
                 .Series(series => {
 
                     series.Add()
-                        .ValueField("totalAmount")
+                        .ValueField("TotalAmount")
                         .Color("yellow");
 
                     series.Add()
-                        .ValueField("amount");
+                        .ValueField("Amount");
 
                 })
             )

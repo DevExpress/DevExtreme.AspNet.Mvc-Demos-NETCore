@@ -3,15 +3,15 @@
     <div class="col-md-6">
         @(Html.DevExtreme().List()
             .ItemTemplate(@<text>
-                <div><%= productName %></div>
-                <div><b><%= Globalize.formatCurrency(unitPrice, "USD") %></b></div>
+                <div><%= ProductName %></div>
+                <div><b><%= Globalize.formatCurrency(UnitPrice, "USD") %></b></div>
             </text>)
             .DataSource(d => d.WebApi().Controller("ListData"))
             .DataSourceOptions(d => d
                 .PageSize(1)
-                .Sort("productName")
-                .Group("category.categoryName")
-                .Filter("[ 'unitPrice', '>', '15' ]")
+                .Sort("ProductName")
+                .Group("Category.CategoryName")
+                .Filter("[ 'UnitPrice', '>', '15' ]")
             )
             .Grouped(true)
             .CollapsibleGroups(true)
@@ -25,12 +25,12 @@
     <div class="col-md-6">
         @(Html.DevExtreme().List()
             .ItemTemplate(@<text>
-                <div><%= productName %></div>
+                <div><%= ProductName %></div>
             </text>)
             .DataSource(d => d.WebApi().Controller("ListData"))
             .DataSourceOptions(d => d
                 .PageSize(20)
-                .Sort("productName")
+                .Sort("ProductName")
             )
             .AllowItemReordering(true)
             .PullRefreshEnabled(true)
